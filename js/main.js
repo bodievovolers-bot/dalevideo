@@ -350,6 +350,10 @@
   /* ---------------- Contact form ---------------- */
   var form = document.getElementById("contactForm");
   var formSuccess = document.getElementById("formSuccess");
+  var formError = document.getElementById("formError");
+  var formErrorText = document.getElementById("formErrorText");
+  var submitBtn = document.getElementById("formSubmitBtn");
+  var submitBtnLabel = submitBtn ? submitBtn.querySelector(".btn-label") : null;
   if (form) {
     form.setAttribute("novalidate", "true"); // native validation stays on if this script fails to run
     var fields = [
@@ -385,11 +389,44 @@
         if (firstInvalid) firstInvalid.focus();
         return;
       }
-      formSuccess.classList.add("is-visible");
-      form.reset();
-      setTimeout(function () {
-        formSuccess.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
-      }, 50);
+
+      formSuccess.classList.remove("is-visible");
+      formError.classList.remove("is-visible");
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitBtnLabel) submitBtnLabel.textContent = "Sending...";
+
+      var payload = Object.fromEntries(new FormData(form));
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.success) {
+            formSuccess.classList.add("is-visible");
+            form.reset();
+            fields.forEach(function (f) {
+              document.getElementById(f.wrapper).classList.remove("has-error");
+            });
+          } else {
+            formErrorText.textContent = data.message || "Something went wrong sending your message. Please try again, or email me directly.";
+            formError.classList.add("is-visible");
+          }
+        })
+        .catch(function () {
+          formErrorText.textContent = "Couldn't send your message — check your connection and try again, or email me directly.";
+          formError.classList.add("is-visible");
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitBtnLabel) submitBtnLabel.textContent = "Send Message";
+          setTimeout(function () {
+            var target = formSuccess.classList.contains("is-visible") ? formSuccess : formError;
+            target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+          }, 50);
+        });
     });
   }
 

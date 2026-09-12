@@ -85,7 +85,7 @@
         <div class="stat reveal-item">
           <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c2.7.4 4.5 2.4 4.5 5.8"/></svg>
           <span class="stat-num" data-count="20" data-suffix="+">20+</span>
-          <span class="stat-label">Work with 20 clients local</span>
+          <span class="stat-label">Work with 20 clients now</span>
         </div>
         <div class="stat reveal-item">
           <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><polyline points="8.5 13.5 7 21 12 18.5 17 21 15.5 13.5"/></svg>
@@ -653,9 +653,16 @@
         </div>
 
         <form class="contact-form reveal" id="contactForm" style="transition-delay:100ms">
+          <input type="hidden" name="access_key" value="c8ee8d5d-7da8-4182-89c2-9cbc56622f03">
+          <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off">
+
           <div class="form-success" id="formSuccess" role="status">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="8 12 11 15 16 9"/></svg>
             <span>Thanks! Your message has been received — I'll reply within 24 hours.</span>
+          </div>
+          <div class="form-error" id="formError" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16.01"/></svg>
+            <span id="formErrorText">Something went wrong sending your message. Please try again, or email me directly.</span>
           </div>
 
           <div class="form-row two-col">
@@ -690,11 +697,11 @@
             <span class="field-error">Please add a short message.</span>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-block">
-            Send Message
+          <button type="submit" class="btn btn-primary btn-block" id="formSubmitBtn">
+            <span class="btn-label">Send Message</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="3" x2="10" y2="14"/><polygon points="21 3 14 21 10 14 3 10 21 3"/></svg>
           </button>
-          <p class="form-note">This form is front-end only for now — connect it to an email service (e.g. Formspree) to receive real submissions.</p>
+          <p class="form-note">Your message goes straight to my inbox — I'll reply within 24 hours.</p>
         </form>
       </div>
     </div>
