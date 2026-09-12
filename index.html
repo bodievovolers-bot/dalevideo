@@ -107,11 +107,9 @@
   <section id="about" aria-labelledby="about-title">
     <div class="container">
       <div class="about-grid">
-        <div class="about-portrait about-portrait--video reveal">
-          <video id="aboutVideo" muted loop playsinline preload="none" aria-label="Behind the scenes — Dale editing"><!-- preload="none": this is a large file, so it only starts downloading once scrolled into view -->
-            <source src="videos/about-reel.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" id="aboutSoundToggle" aria-label="Unmute video" aria-pressed="false">
+        <div class="about-portrait about-portrait--video video-card reveal" data-youtube-id="WYK7cUKphmk">
+          <img src="https://img.youtube.com/vi/WYK7cUKphmk/maxresdefault.jpg" alt="Behind the scenes — Dale editing" width="1280" height="720" loading="lazy">
+          <button class="sound-toggle" aria-label="Unmute video" aria-pressed="false">
             <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 5V4L8 9H4z"/><line x1="16" y1="9" x2="21" y2="14"/><line x1="21" y1="9" x2="16" y2="14"/></svg>
             <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7"/><path d="M19 6a8.5 8.5 0 010 12"/></svg>
           </button>
