@@ -1,2 +1,0 @@
-# dalevideo
-sss
